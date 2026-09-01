@@ -1,0 +1,219 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  mix-blend-mode: difference;
+  color: #fff;
+  pointer-events: none;
+}
+.site-header a, .site-header .logo { pointer-events: auto; }
+
+.logo {
+  font-size: 22px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dot { font-size: 14px; opacity: .7; }
+
+.nav {
+  display: flex;
+  gap: 28px;
+  font-size: 15px;
+}
+.nav a { color: inherit; text-decoration: none; opacity: .85; }
+.nav a:hover { opacity: 1; }
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- intro ---------- */
+.intro {
+  height: 100vh;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.intro-inner h1 {
+  font-size: clamp(40px, 7vw, 90px);
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+.intro-inner p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #666;
+}
+.intro-arrow {
+  display: block;
+  margin-top: 40px;
+  font-size: 28px;
+  animation: intro-bounce 1.6s ease-in-out infinite;
+}
+@keyframes intro-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+/* ---------- scroll stack (GSAP ScrollTrigger driven) ---------- */
+main { position: relative; }
+
+.panel {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: var(--bg, #fff);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* each subsequent panel stacks above the previous one and slides over it */
+.panel:nth-of-type(1) { z-index: 1; }
+.panel:nth-of-type(2) { z-index: 2; }
+.panel:nth-of-type(3) { z-index: 3; }
+.panel:nth-of-type(4) { z-index: 4; }
+
+.panel-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 100%;
+}
+
+/* darkens as the panel scrolls out and the next one covers it */
+.panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.panel-number {
+  position: absolute;
+  left: 40px;
+  bottom: 6%;
+  font-size: clamp(120px, 18vw, 260px);
+  font-weight: 600;
+  color: rgba(0,0,0,.08);
+  line-height: 1;
+  user-select: none;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding-top: 140px;
+  max-width: 1200px;
+}
+
+.panel-title {
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.panel-text {
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: #333;
+  max-width: 480px;
+}
+
+.panel-image {
+  position: absolute;
+  right: 40px;
+  top: 46%;
+  transform: translateY(-50%);
+  width: min(38vw, 460px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0,0,0,.15);
+}
+
+.panel-image img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* ---------- final full-bleed panel ---------- */
+.panel.final {
+  color: #fff;
+}
+.final-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.final-bg img {
+  position: absolute;
+  top: -15%;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  object-fit: cover;
+  filter: brightness(0.55);
+  will-change: transform;
+}
+.final-title {
+  position: relative;
+  font-size: clamp(48px, 8vw, 110px);
+  font-weight: 600;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  padding: 0 40px;
+}
+
+.site-footer {
+  position: relative;
+  z-index: 5;
+  background: #111;
+  color: #999;
+  text-align: center;
+  padding: 30px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .panel-grid { grid-template-columns: 1fr; gap: 20px; padding-top: 110px; }
+  .panel-image { position: relative; right: auto; top: auto; transform: none; width: 80vw; margin-top: 40px; }
+  .panel-number { font-size: clamp(90px, 30vw, 160px); }
+}

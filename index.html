@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storey — Scroll Stack Effect</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Storey<span class="dot">⁘</span></div>
+  <nav class="nav">
+    <a href="#">Projects</a>
+    <a href="#">Studio</a>
+    <a href="#">Journal</a>
+  </nav>
+  <a href="#" class="contact-btn">Contact<span class="dot">⁘</span></a>
+</header>
+
+<section class="intro">
+  <div class="intro-inner">
+    <h1>Scroll down</h1>
+    <p>секція 1 скролиться повільніше, а секція 2 наповзає на неї знизу</p>
+    <span class="intro-arrow">↓</span>
+  </div>
+</section>
+
+<main>
+
+  <section class="panel" style="--bg:#ffffff;">
+    <div class="panel-overlay"></div>
+    <div class="panel-inner">
+      <div class="panel-number">1</div>
+      <div class="panel-grid">
+        <h2 class="panel-title">Interior Atmosphere</h2>
+        <p class="panel-text">We design contemporary homes shaped through clarity, proportion, and long-term living, creating spaces that feel calm, functional, and deeply connected to their surroundings.</p>
+      </div>
+      <div class="panel-image">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" alt="Interior" data-parallax>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" style="--bg:#f2f2f2;">
+    <div class="panel-overlay"></div>
+    <div class="panel-inner">
+      <div class="panel-number">2</div>
+      <div class="panel-grid">
+        <h2 class="panel-title">Landscape Integration</h2>
+        <p class="panel-text">Each project is developed in response to its setting, connecting architecture, landscape, and outdoor living into one cohesive experience.</p>
+      </div>
+      <div class="panel-image">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="Exterior" data-parallax>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" style="--bg:#e6e6e6;">
+    <div class="panel-overlay"></div>
+    <div class="panel-inner">
+      <div class="panel-number">3</div>
+      <div class="panel-grid">
+        <h2 class="panel-title">Material Honesty</h2>
+        <p class="panel-text">Stone, timber, and glass are used with restraint, allowing texture and light to define each space rather than ornament.</p>
+      </div>
+      <div class="panel-image">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80" alt="Materials" data-parallax>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel final" style="--bg:#111111;">
+    <div class="panel-overlay"></div>
+    <div class="panel-inner">
+      <div class="final-bg">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1600&q=80" alt="Sky" data-parallax>
+      </div>
+      <h2 class="final-title">We shape<br>space into<br>purpose.</h2>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 Storey Studio — Scroll effect demo</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
