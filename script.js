@@ -14,6 +14,15 @@ const OVERLAP_VH = 35; // how much of the previous panel gets covered
 
 const panels = gsap.utils.toArray('.panel');
 
+// Panels are shifted upward via transform (not real layout), so the
+// document's flow height never shrinks to match. A negative margin only
+// pulls the footer up — main's own 400vh box still sets the scroll height,
+// leaving a blank screen below the footer. Size main to the visual height
+// of the stack instead; overflow:clip (style.css) keeps the untransformed
+// panel boxes from stretching the page back out.
+const totalOverlap = (panels.length - 1) * OVERLAP_VH;
+document.querySelector('main').style.height = `${panels.length * 100 - totalOverlap}vh`;
+
 panels.forEach((panel, i) => {
   const img = panel.querySelector('[data-parallax]');
 
@@ -43,19 +52,23 @@ panels.forEach((panel, i) => {
   // Stretching every panel's ramp back to the same start point keeps the
   // math (and the touching edges) consistent no matter how many panels
   // are stacked.
+  //
+  // The ramp ends when the panel's SHIFTED top reaches the viewport top,
+  // i.e. after i * (100 - OVERLAP_VH) vh of scroll — not at its original
+  // layout position, which it has already passed by i * OVERLAP_VH.
   if (i > 0) {
     gsap.fromTo(
       panel,
       { y: 0 },
       {
-        y: `-${i * OVERLAP_VH}vh`,
+        y: () => -i * window.innerHeight * OVERLAP_VH / 100,
         ease: 'none',
         scrollTrigger: {
           trigger: panels[0],
           start: 'top top',
-          endTrigger: panel,
-          end: 'top top',
+          end: () => `+=${i * window.innerHeight * (1 - OVERLAP_VH / 100)}`,
           scrub: true,
+          invalidateOnRefresh: true,
         },
       }
     );

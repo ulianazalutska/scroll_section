@@ -82,7 +82,9 @@ body {
 }
 
 /* ---------- scroll stack (GSAP ScrollTrigger driven) ---------- */
-main { position: relative; }
+/* height is set from script.js; clip stops the transformed panels'
+   original boxes from adding blank scroll space below the footer */
+main { position: relative; overflow: clip; }
 
 .panel {
   position: relative;
